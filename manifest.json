@@ -1,0 +1,33 @@
+{
+    "manifest_version": 2,
+    "name": "GG Notifier",
+    "version": "1.0",
+    "default_locale": "en",
+    "description": "__MSG_m8__",
+
+    "homepage_url": "https://github.com/megumintyan/GG-Notifier",
+    "icons": {
+        "48": "icons/gg-48.png"
+    },
+
+    "permissions": [
+        "storage",
+        "https://*/*",
+        "http://*/*",
+        "notifications",
+        "tabs"
+    ],
+
+    "background": {
+        "scripts": [
+            "background.js"
+        ]
+    },
+    
+    "browser_action": {
+        "default_icon": "icons/gg-32.png",
+        "default_title": "GG Notifier",
+        "default_popup": "popup/popup.html"
+    }
+
+}

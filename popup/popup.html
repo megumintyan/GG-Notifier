@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="/background.js"></script>
+    <link rel="stylesheet" href="popup.css">
+  </head>
+
+  <body>
+
+    <div class="menu-bar">
+      <button class="button" id="following" style="background-color: #52709c;background: url('/img/heart.svg');"></button>
+      <button class="button" id="settings" style="background: url('/img/settings.svg');"></button>
+      <button class="button" id="info" style="background: url('/img/info.svg');"></button>
+    </div>
+
+    <div style="margin-left:10%">
+      <div id="following-tab" class="tab">
+        
+      </div>
+
+      <div id="settings-tab" class="tab" style="display:none; margin-left:20px; margin-top:20px">
+        <div>
+          __MSG_m2__
+          <br>
+          <input type="text" id="input-box" class="input"><p id="error" style="color:red;"><p>
+        </div>
+        <div>
+          __MSG_m1__
+          <div>
+            <input type="range" min="1" max="60" value="3" class="slider" id="refresh" style="width:55%">
+            <div id="minutes" style="position:relative; left:220px; bottom:20px;"></div>
+          </div>
+        </div>
+        <button id="testNotification">test notification</button>
+      </div>
+
+      <div id="info-tab" class="tab" style="display:none; margin-left:20px; margin-top:20px;">
+        <h2>Info</h2>
+      </div>
+    </div>
+
+    <script src="popup.js"></script>
+  </body>
+
+</html>

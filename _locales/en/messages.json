@@ -1,0 +1,10 @@
+{
+    "m1" : { "message" : "Refresh interval"},
+    "m2" : { "message" : "Add channel"},
+    "m3" : { "message" : "min"},
+    "m4" : { "message" : "viewers"},
+    "m5" : { "message" : "Add at least one channel"},
+    "m6" : { "message" : "no such channel"},
+    "m7" : { "message" : "channel is already exists"},
+    "m8" : { "message" : "Track your favorite streams on GoodGame.ru"}
+}

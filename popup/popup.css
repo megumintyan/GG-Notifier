@@ -1,0 +1,114 @@
+html, body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    width:440px;
+    height:500px;
+    background-color: #0d1221;
+    color: #c2c2c8;
+    overflow-x: hidden;
+    font-size: 12px;
+    font-weight: normal;
+}
+
+.menu-bar {
+    width: 36px;
+    height: 100%;
+    position: absolute;
+    background-color: #233056;
+}
+
+.button {
+    border: none;
+    background-color: #233056;
+    padding: 8px 8px;
+    font-size: 20px;
+    color: white;
+    background-repeat:no-repeat !important;
+    height:36px;
+    width:36px;
+    background-position:center !important;
+}
+
+.button:hover {
+    background-color: #6b8cbc !important;
+}
+
+button::-moz-focus-inner {
+    border: none;
+    outline: none;
+}
+
+.slider::-moz-range-track {
+    height: 5px;
+    border-radius: 5px;
+    background: #6b8cbc;
+}
+
+.slider::-moz-range-thumb {
+    border: none;
+    height: 16px;
+}
+
+.tab {
+    padding-top: 5px;
+    padding-right: 5px;
+}
+
+input[type="text"] {
+    height: 20px;
+    border: 5px;
+    background: #0d1221;
+    color: white;
+    outline: 1px solid #6b8cbc;
+    margin: 5px;
+}
+
+.container {
+    height: 65px;
+    width: 100%;
+}
+
+.container:hover {
+    background-color: #141c33;
+    cursor: pointer;
+}
+
+.container:hover h4 {
+    color:white;
+    pointer-events: none;
+}
+
+.container img {
+    position: relative;
+    height: 50px;
+    vertical-align: middle;
+    margin-top: 8px;
+    pointer-events: none;
+}
+
+.text-block {
+    position: relative;
+    line-height: 3px;
+    bottom: 60px;
+    left: 100px;
+    width: 300px;
+    pointer-events: none;
+}
+.text-block p {
+    color: #6c6c6c;
+}
+
+.tab hr {
+    border: 1px solid black;
+    margin: 0px;
+}
+
+#testNotification {
+    background-color:#52709c;
+    color:white;
+    border-radius: 2px;
+    width: 200px;
+    height: 30px;
+    border: none;
+}
