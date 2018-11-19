@@ -66,6 +66,7 @@ window.addEventListener("load", (e) => {
 	document.body.innerHTML = document.body.innerHTML.replace('__MSG_m1__', browser.i18n.getMessage("m1"));
 	document.body.innerHTML = document.body.innerHTML.replace('__MSG_m2__', browser.i18n.getMessage("m2"));
 	document.body.innerHTML = document.body.innerHTML.replace('__MSG_m9__', browser.i18n.getMessage("m9"));
+	document.body.innerHTML = document.body.innerHTML.replace('__MSG_m11__', browser.i18n.getMessage("m11"));
 	let slider = document.getElementById("refresh");
 	let minutes = document.getElementById("minutes");
 	let sliderVolume = document.getElementById("audio-volume");

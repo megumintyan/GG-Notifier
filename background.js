@@ -19,10 +19,10 @@ function updateFollowingTab() {
 		while (tab.firstChild) {
 			tab.removeChild(tab.firstChild);
 		}
-		if(!count) {
-			let following = document.getElementById('following-tab');
-			following.innerHTML = '<center><h2>'+ browser.i18n.getMessage("m10") + '</h2></center>';
-		}
+		
+		if(!count)
+			tab.innerHTML = '<center><h2>'+ browser.i18n.getMessage("m10") + '</h2></center>';
+		
 		channels.forEach((e) => {
 			
 			let div = document.createElement('div');
