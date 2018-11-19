@@ -57,7 +57,7 @@ document.addEventListener("click", (e) => {
 		window.open("https://goodgame.ru/channel/" + e.target.id);
 		window.close();
 	} else if(e.target.id === 'testNotification')
-		notify('user');
+		notify('Title', 'Test message');
 
 });
 

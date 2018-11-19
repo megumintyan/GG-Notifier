@@ -53,12 +53,12 @@ function updateFollowingTab() {
 	}
 }
 	
-function notify(id) {
+function notify(id, msg) {
 	browser.notifications.create("stream-notify", {
 		"type": "basic",
 		"iconUrl": browser.extension.getURL("icons/gg-128.png"),
-		"title": "GoodGame Notifier",
-		"message": id + " is online"
+		"title": id,
+		"message": msg
 	});
 	let audio = new Audio("/audio/notification.mp3");
 	audio.volume = localStorage.getItem('volume') / 100;
@@ -72,7 +72,7 @@ function updateStreams(response) {
 		localStorage.setItem('channels', JSON.stringify(channels));
 		channels.forEach((e) => {
 			if(e[1]['status'] === 'Live')
-				notify(e[1]['key']);
+				notify(e[1]['key'], e[1]['title']);
 		});
 		return;
 	} else
@@ -84,11 +84,11 @@ function updateStreams(response) {
 		for(let j = 0; j < channels.length; j++){
 			if(e[1]['key'] === channels[j][1]['key']){
 				if(e[1]['status'] === 'Live' && channels[j][1]['status'] === 'Dead')
-					notify(e[1]['key']);
+					notify(e[1]['key'], e[1]['title']);
 				break;
 			} else if(e[1]['key'] !== channels[j][1]['key'] && j === channels.length - 1 &&
 			          e[1]['status'] === 'Live'){
-				notify(e[1]['key']);
+				notify(e[1]['key'], e[1]['title']);
 			}
 		}
 	});
