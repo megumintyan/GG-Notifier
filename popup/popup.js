@@ -40,14 +40,14 @@ document.addEventListener("keyup", (e) => {
 
 document.addEventListener("click", (e) => {
 
-	if(e.target.classList.contains("button")) {
+	if(e.target.classList.contains("button-bar")) {
 		let tabName = e.target.id + "-tab";
 
 		let x = document.getElementsByClassName("tab");
 		for(let i = 0; i < x.length; i++)
 			x[i].style.display = "none";
 		
-		let btn = document.getElementsByClassName("button");
+		let btn = document.getElementsByClassName("button-bar");
 		for(let i = 0; i < btn.length; i++)
 			btn[i].style.backgroundColor = "#233056";
 

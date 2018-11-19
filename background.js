@@ -50,6 +50,46 @@ function updateFollowingTab() {
 				tab.appendChild(hr);
 			}
 		});
+		let offlineButton = document.createElement('button');
+		let divButton = document.createElement('div');
+		let br = document.createElement('br');
+		divButton.id = 'divOfflineButton';
+		offlineButton.className = 'button';
+		offlineButton.innerText = browser.i18n.getMessage("m12");
+		offlineButton.id = 'offlineButton';
+		divButton.appendChild(offlineButton);
+		tab.appendChild(br);
+		tab.appendChild(divButton);
+
+		offlineButton.addEventListener("click", () => {
+			tab.removeChild(divButton);
+			tab.removeChild(br);
+			channels.forEach((e) => {
+				
+				let div = document.createElement('div');
+				let divText = document.createElement('div');
+				let img = document.createElement('img');
+				let hr = document.createElement('hr');
+				
+				if(e[1]['status'] === 'Dead') {
+					img.src = e[1]['img'];
+
+					divText.className = 'text-block';
+					divText.innerHTML = '<h4>' + e[1]['key'] + '</h4>';
+					divText.innerHTML += '<p>' + e[1]['games'].slice(0,30);
+					divText.innerHTML += '<p>' + e[1]['title'].slice(0,42) + '</p>';
+					div.className = 'container';
+					div.setAttribute('contextmenu', 'menu');
+					div.id = e[1]['key'];
+					div.appendChild(img);
+					div.appendChild(divText);
+					
+					tab.appendChild(div);
+					tab.appendChild(hr);
+				}
+			});
+		});
+
 	}
 }
 	

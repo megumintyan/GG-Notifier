@@ -18,7 +18,7 @@ html, body {
     background-color: #233056;
 }
 
-.button {
+.button-bar {
     border: none;
     background-color: #233056;
     padding: 8px 8px;
@@ -30,7 +30,7 @@ html, body {
     background-position:center !important;
 }
 
-.button:hover {
+.button-bar:hover {
     background-color: #6b8cbc !important;
 }
 
@@ -67,6 +67,7 @@ input[type="text"] {
 .container {
     height: 65px;
     width: 100%;
+    vertical-align: middle;
 }
 
 .container:hover {
@@ -104,11 +105,27 @@ input[type="text"] {
     margin: 0px;
 }
 
-#testNotification {
+.button {
     background-color:#52709c;
     color:white;
     border-radius: 2px;
     width: 200px;
     height: 30px;
     border: none;
+}
+
+#divOfflineButton {
+    text-align:center;
+}
+
+#offlineButton {
+    width: 130px;
+    font-size: 10px;
+    background-color: #141c33;
+    cursor: pointer;
+    
+}
+
+#offlineButton:hover {
+    background-color: #233056;
 }
