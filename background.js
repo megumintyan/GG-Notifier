@@ -6,6 +6,7 @@ if(!localStorage.length) {
 }
 
 let channels = [];
+let count = 0;
 
 function updateFollowingTab() {
 	channels = JSON.parse(localStorage.getItem('channels'));
@@ -17,6 +18,10 @@ function updateFollowingTab() {
 		let tab = views[i].document.getElementById('following-tab');
 		while (tab.firstChild) {
 			tab.removeChild(tab.firstChild);
+		}
+		if(!count) {
+			let following = document.getElementById('following-tab');
+			following.innerHTML = '<center><h2>'+ browser.i18n.getMessage("m10") + '</h2></center>';
 		}
 		channels.forEach((e) => {
 			
@@ -88,7 +93,7 @@ function updateStreams(response) {
 		}
 	});
 
-	let count = 0;
+	count = 0;
 	listOfStreams.forEach((e) => {
 		if(e[1]['status'] === 'Live')
 			count++;

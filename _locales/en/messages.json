@@ -7,5 +7,6 @@
     "m6" : { "message" : "no such channel"},
     "m7" : { "message" : "channel is already exists"},
     "m8" : { "message" : "Track your favorite streams on GoodGame.ru"},
-    "m9" : { "message" : "Notification volume"}
+    "m9" : { "message" : "Notification volume"},
+    "m10" : { "message" : "Nobody is streaming right now"}
 }
