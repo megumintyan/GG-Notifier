@@ -65,8 +65,11 @@ document.addEventListener("click", (e) => {
 window.addEventListener("load", (e) => {
 	document.body.innerHTML = document.body.innerHTML.replace('__MSG_m1__', browser.i18n.getMessage("m1"));
 	document.body.innerHTML = document.body.innerHTML.replace('__MSG_m2__', browser.i18n.getMessage("m2"));
+	document.body.innerHTML = document.body.innerHTML.replace('__MSG_m9__', browser.i18n.getMessage("m9"));
 	let slider = document.getElementById("refresh");
 	let minutes = document.getElementById("minutes");
+	let sliderVolume = document.getElementById("audio-volume");
+	let percent = document.getElementById("volumePercentage");
 	
 		
 	if(localStorage.getItem('time')) {
@@ -79,6 +82,13 @@ window.addEventListener("load", (e) => {
 	slider.oninput = function() {
 		minutes.innerHTML = this.value + ' ' + browser.i18n.getMessage("m3");
 		localStorage.setItem('time', this.value);
+	}
+
+	percent.innerHTML = localStorage.getItem('volume') + ' %';
+	sliderVolume.value = localStorage.getItem('volume');
+	sliderVolume.oninput = function() {
+		percent.innerHTML = this.value + ' %';
+		localStorage.setItem('volume', this.value);
 	}
 	
 	if(localStorage.getItem('ids') == "") {

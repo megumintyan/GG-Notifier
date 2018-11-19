@@ -2,6 +2,7 @@ if(!localStorage.length) {
 	localStorage.setItem('time', 3);
 	localStorage.setItem('ids', '');
 	localStorage.setItem('channels', '');
+	localStorage.setItem('volume', '50');
 }
 
 let channels = [];
@@ -54,6 +55,9 @@ function notify(id) {
 		"title": "GoodGame Notifier",
 		"message": id + " is online"
 	});
+	let audio = new Audio("/audio/notification.mp3");
+	audio.volume = localStorage.getItem('volume') / 100;
+	audio.play();
 }
 
 function updateStreams(response) {

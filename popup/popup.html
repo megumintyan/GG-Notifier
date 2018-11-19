@@ -10,7 +10,7 @@
   <body>
 
     <div class="menu-bar">
-      <button class="button" id="following" style="background-color: #52709c;background: url('/img/heart.svg');"></button>
+      <button class="button" id="following" style="background-color: #52709c !important;background: url('/img/heart.svg');"></button>
       <button class="button" id="settings" style="background: url('/img/settings.svg');"></button>
       <button class="button" id="info" style="background: url('/img/info.svg');"></button>
     </div>
@@ -31,6 +31,13 @@
           <div>
             <input type="range" min="1" max="60" value="3" class="slider" id="refresh" style="width:55%">
             <div id="minutes" style="position:relative; left:220px; bottom:20px;"></div>
+          </div>
+        </div>
+        <div>
+          __MSG_m9__
+          <div>
+            <input type="range" min="0" max="100" value="3" class="slider" id="audio-volume" style="width:55%">
+            <div id="volumePercentage" style="position:relative; left:220px; bottom:20px;"></div>
           </div>
         </div>
         <button id="testNotification">test notification</button>
