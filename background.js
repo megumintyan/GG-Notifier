@@ -9,9 +9,11 @@ let channels = [];
 let audio = new Audio("/audio/notification.mp3");
 
 function updateFollowingTab() {
-	channels = JSON.parse(localStorage.getItem('channels'));
+
+	if(localStorage.getItem('channels'))
+		channels = JSON.parse(localStorage.getItem('channels'));
 	let count = 0;
-	
+
 	let views = browser.extension.getViews({
 		type: "popup"
 	});
@@ -21,6 +23,10 @@ function updateFollowingTab() {
 			tab.removeChild(tab.firstChild);
 		}
 		
+		if(!localStorage.getItem('ids')) {
+			tab.innerHTML = '<center><h2>'+ browser.i18n.getMessage("m5") + '</h2></center>';
+			return;
+		}
 		
 		channels.forEach((e) => {
 			

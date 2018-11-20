@@ -67,12 +67,10 @@ document.addEventListener("click", (e) => {
 		} else if(e.target.title == browser.i18n.getMessage("m14"))
 			navigator.clipboard.writeText("https://goodgame.ru/channel/" + containerID);
 		else if(e.target.title == browser.i18n.getMessage("m15")) {
-			console.log(browser.i18n.getMessage("m15"));
 			let ids = localStorage.getItem('ids');
 			ids = ids.replace(containerID + ',', '');
-			console.log(ids);
 			ids = ids.replace(',' + containerID, '');
-			console.log(ids);
+			ids = ids.replace(containerID, '');
 			localStorage.setItem('ids', ids);
 			getJSON(ids, updateStreams);
 		}
@@ -121,11 +119,6 @@ window.addEventListener("load", (e) => {
 	sliderVolume.oninput = function() {
 		percent.innerHTML = this.value + ' %';
 		localStorage.setItem('volume', this.value);
-	}
-	
-	if(localStorage.getItem('ids') == "") {
-		let following = document.getElementById('following-tab');
-		following.innerHTML = '<center><h2>'+ browser.i18n.getMessage("m5") + '</h2></center>';
 	}
 	
 	browser.runtime.getBackgroundPage(e => {
