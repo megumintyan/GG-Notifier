@@ -1,3 +1,5 @@
+let containerID = '';
+
 function showErrorMessage(msg) {
 	let err = document.getElementById('error');
 	err.innerHTML = msg;
@@ -58,15 +60,44 @@ document.addEventListener("click", (e) => {
 		window.close();
 	} else if(e.target.id === 'testNotification')
 		notify('Title', 'Test message');
+	else if(e.target.classList.contains("context-menu")) {
+		if(e.target.title == browser.i18n.getMessage("m13")) {
+			window.open("https://goodgame.ru/channel/" + containerID);
+			window.close();
+		} else if(e.target.title == browser.i18n.getMessage("m14"))
+			navigator.clipboard.writeText("https://goodgame.ru/channel/" + containerID);
+		else if(e.target.title == browser.i18n.getMessage("m15")) {
+			console.log(browser.i18n.getMessage("m15"));
+			let ids = localStorage.getItem('ids');
+			ids = ids.replace(containerID + ',', '');
+			console.log(ids);
+			ids = ids.replace(',' + containerID, '');
+			console.log(ids);
+			localStorage.setItem('ids', ids);
+			getJSON(ids, updateStreams);
+		}
+	}
+	
+
+	let ctxMenu = document.getElementById("ctxMenu");
+	ctxMenu.style.display = "";
+	ctxMenu.style.left = "";
+	ctxMenu.style.top = "";
 
 });
 
+document.addEventListener("contextmenu",function(e){
+	e.preventDefault();
+});
 
 window.addEventListener("load", (e) => {
 	document.body.innerHTML = document.body.innerHTML.replace('__MSG_m1__', browser.i18n.getMessage("m1"));
 	document.body.innerHTML = document.body.innerHTML.replace('__MSG_m2__', browser.i18n.getMessage("m2"));
 	document.body.innerHTML = document.body.innerHTML.replace('__MSG_m9__', browser.i18n.getMessage("m9"));
 	document.body.innerHTML = document.body.innerHTML.replace('__MSG_m11__', browser.i18n.getMessage("m11"));
+	document.body.innerHTML = document.body.innerHTML.replace('__MSG_m13__', browser.i18n.getMessage("m13"));
+	document.body.innerHTML = document.body.innerHTML.replace('__MSG_m14__', browser.i18n.getMessage("m14"));
+	document.body.innerHTML = document.body.innerHTML.replace('__MSG_m15__', browser.i18n.getMessage("m15"));
 	let slider = document.getElementById("refresh");
 	let minutes = document.getElementById("minutes");
 	let sliderVolume = document.getElementById("audio-volume");
@@ -100,5 +131,17 @@ window.addEventListener("load", (e) => {
 	browser.runtime.getBackgroundPage(e => {
 		e.updateFollowingTab();
 	});
-	
+
+	let tab = document.getElementById('following-tab');
+	tab.addEventListener("contextmenu", (e) => {
+		e.preventDefault();
+		containerID = e.target.id;
+		if(e.target.id !== 'offlineButton') {
+			let ctxMenu = document.getElementById("ctxMenu");
+			ctxMenu.style.display = "block";
+			ctxMenu.style.left = (e.pageX - 10) + "px";
+			ctxMenu.style.top = (e.pageY - 10) + "px";
+		}
+	},false);
+
 });
