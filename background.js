@@ -6,11 +6,12 @@ if(!localStorage.length) {
 }
 
 let channels = [];
-let count = 0;
+let audio = new Audio("/audio/notification.mp3");
 
 function updateFollowingTab() {
 	channels = JSON.parse(localStorage.getItem('channels'));
-
+	let count = 0;
+	
 	let views = browser.extension.getViews({
 		type: "popup"
 	});
@@ -20,8 +21,6 @@ function updateFollowingTab() {
 			tab.removeChild(tab.firstChild);
 		}
 		
-		if(!count)
-			tab.innerHTML = '<center><h2>'+ browser.i18n.getMessage("m10") + '</h2></center>';
 		
 		channels.forEach((e) => {
 			
@@ -29,8 +28,9 @@ function updateFollowingTab() {
 			let divText = document.createElement('div');
 			let img = document.createElement('img');
 			let hr = document.createElement('hr');
-			
+		
 			if(e[1]['status'] === 'Live') {
+				count++;
 				img.src = e[1]['thumb'];
 				if(e[1]['thumb'].search(/http/i) === -1)
 					img.src = 'https:' + e[1]['thumb'];
@@ -50,6 +50,10 @@ function updateFollowingTab() {
 				tab.appendChild(hr);
 			}
 		});
+
+		if(!count)
+			tab.innerHTML = '<center><h2>'+ browser.i18n.getMessage("m10") + '</h2></center>';
+		
 		let offlineButton = document.createElement('button');
 		let divButton = document.createElement('div');
 		let br = document.createElement('br');
@@ -100,7 +104,7 @@ function notify(id, msg) {
 		"title": id,
 		"message": msg
 	});
-	let audio = new Audio("/audio/notification.mp3");
+
 	audio.volume = localStorage.getItem('volume') / 100;
 	audio.play();
 }
@@ -133,7 +137,7 @@ function updateStreams(response) {
 		}
 	});
 
-	count = 0;
+	let count = 0;
 	listOfStreams.forEach((e) => {
 		if(e[1]['status'] === 'Live')
 			count++;
