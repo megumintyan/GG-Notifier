@@ -10,5 +10,8 @@
     "m9" : { "message" : "Notification volume"},
     "m10" : { "message" : "Nobody is streaming right now"},
     "m11" : { "message" : "test notification"},
-    "m12" : { "message" : "Show offline channels"}
+    "m12" : { "message" : "Show offline channels"},
+    "m13" : { "message" : "Open"},
+    "m14" : { "message" : "Copy link"},
+    "m15" : { "message" : "Delete"}
 }
