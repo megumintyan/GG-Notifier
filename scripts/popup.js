@@ -84,18 +84,11 @@ document.addEventListener("click", (e) => {
 
 });
 
-document.addEventListener("contextmenu",function(e){
+document.addEventListener("contextmenu", (e) => {
 	e.preventDefault();
 });
 
 window.addEventListener("load", (e) => {
-	document.body.innerHTML = document.body.innerHTML.replace('__MSG_m1__', browser.i18n.getMessage("m1"));
-	document.body.innerHTML = document.body.innerHTML.replace('__MSG_m2__', browser.i18n.getMessage("m2"));
-	document.body.innerHTML = document.body.innerHTML.replace('__MSG_m9__', browser.i18n.getMessage("m9"));
-	document.body.innerHTML = document.body.innerHTML.replace('__MSG_m11__', browser.i18n.getMessage("m11"));
-	document.body.innerHTML = document.body.innerHTML.replace('__MSG_m13__', browser.i18n.getMessage("m13"));
-	document.body.innerHTML = document.body.innerHTML.replace('__MSG_m14__', browser.i18n.getMessage("m14"));
-	document.body.innerHTML = document.body.innerHTML.replace('__MSG_m15__', browser.i18n.getMessage("m15"));
 	let slider = document.getElementById("refresh");
 	let minutes = document.getElementById("minutes");
 	let sliderVolume = document.getElementById("audio-volume");
