@@ -37,9 +37,12 @@ function updateFollowingTab() {
 		
 			if(e[1]['status'] === 'Live') {
 				count++;
-				img.src = e[1]['thumb'];
+
 				if(e[1]['thumb'].search(/http/i) === -1)
 					img.src = 'https:' + e[1]['thumb'];
+				else
+					img.src = e[1]['thumb'];
+				img.onerror = () => { img.src = e[1]['img']; };
 
 				divText.className = 'text-block';
 				divText.innerHTML = '<h4>' + e[1]['key'] + '</h4>';
