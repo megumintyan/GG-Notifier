@@ -48,11 +48,10 @@ function updateFollowingTab() {
 				divText.className = 'text-block';
 				divText.innerHTML = '<h4>' + e[1]['key'] + '</h4>';
 
-				divText.innerHTML += '<p>' + e[1]['games'].slice(0,30) + ' - ' +
+				divText.innerHTML += '<p>' + (e[1]['games'] ? e[1]['games'].slice(0,30) : '') + ' - ' +
 					e[1]['viewers'] +' ' + browser.i18n.getMessage("m4") + '</p>';
-				divText.innerHTML += '<p>' + e[1]['title'].slice(0,42) + '</p>';
+				divText.innerHTML += '<p>' + (e[1]['title'] ? e[1]['title'].slice(0,42) : '') + '</p>';
 				div.className = 'container';
-				div.setAttribute('contextmenu', 'menu');
 				div.id = e[1]['key'];
 				div.appendChild(img);
 				div.appendChild(divText);
@@ -91,10 +90,9 @@ function updateFollowingTab() {
 
 					divText.className = 'text-block';
 					divText.innerHTML = '<h4>' + e[1]['key'] + '</h4>';
-					divText.innerHTML += '<p>' + e[1]['games'].slice(0,30);
-					divText.innerHTML += '<p>' + e[1]['title'].slice(0,42) + '</p>';
+					divText.innerHTML += '<p>' + (e[1]['games'] ? e[1]['games'].slice(0,30) : '') + '</p>';
+					divText.innerHTML += '<p>' + (e[1]['title'] ? e[1]['title'].slice(0,42) : '') + '</p>';
 					div.className = 'container';
-					div.setAttribute('contextmenu', 'menu');
 					div.id = e[1]['key'];
 					div.appendChild(img);
 					div.appendChild(divText);
@@ -124,7 +122,7 @@ function notify(id, msg) {
 
 function updateStreams(response) {
 
-	let delay = 1000;
+	let delay = 0;
 	if(!localStorage.getItem('channels')){
 		channels = Object.entries(response);
 		localStorage.setItem('channels', JSON.stringify(channels));
