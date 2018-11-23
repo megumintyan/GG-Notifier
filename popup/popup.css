@@ -178,3 +178,12 @@ menu[title]:before {
 menu:not([title]) {
     display: none;
 }
+
+label {
+    position:relative;
+    top: -4px;
+}
+
+input[type="checkbox"] {
+    color:black;
+}

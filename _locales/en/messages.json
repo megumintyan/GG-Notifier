@@ -13,5 +13,6 @@
     "m12" : { "message" : "Show offline channels"},
     "m13" : { "message" : "Open"},
     "m14" : { "message" : "Copy link"},
-    "m15" : { "message" : "Delete"}
+    "m15" : { "message" : "Delete"},
+    "m16" : { "message" : "Show notifications"}
 }

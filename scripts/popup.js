@@ -93,8 +93,13 @@ window.addEventListener("load", (e) => {
 	let minutes = document.getElementById("minutes");
 	let sliderVolume = document.getElementById("audio-volume");
 	let percent = document.getElementById("volumePercentage");
+	let checkbox = document.getElementById("showNotifications");
+
+	checkbox.checked = (localStorage.getItem('showNotifications') === 'true');
+	checkbox.onchange = () => {
+		localStorage.setItem('showNotifications', checkbox.checked.toString());
+	}
 	
-		
 	if(localStorage.getItem('time')) {
 		minutes.innerHTML = localStorage.getItem('time') + ' ' + browser.i18n.getMessage("m3");
 		slider.value = localStorage.getItem('time');

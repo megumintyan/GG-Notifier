@@ -3,10 +3,11 @@ if(!localStorage.length) {
 	localStorage.setItem('ids', '');
 	localStorage.setItem('channels', '');
 	localStorage.setItem('volume', '50');
+	localStorage.setItem('showNotifications', 'true');
 }
 
 let channels = [];
-let audio = new Audio("/audio/notification.mp3");
+
 
 function updateFollowingTab() {
 
@@ -107,13 +108,15 @@ function updateFollowingTab() {
 }
 	
 function notify(id, msg) {
-	browser.notifications.create("stream-notify", {
-		"type": "basic",
-		"iconUrl": browser.extension.getURL("icons/gg-128.png"),
-		"title": id,
-		"message": msg
-	});
-
+	if(localStorage.getItem('showNotifications') == 'true') {
+		browser.notifications.create("stream-notify", {
+			"type": "basic",
+			"iconUrl": browser.extension.getURL("icons/gg-128.png"),
+			"title": id,
+			"message": msg
+		});
+	}
+	let audio = new Audio("/audio/notification.mp3");
 	audio.volume = localStorage.getItem('volume') / 100;
 	audio.play();
 }
