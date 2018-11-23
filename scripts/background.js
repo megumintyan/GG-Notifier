@@ -47,6 +47,7 @@ function updateFollowingTab() {
 
 				divText.className = 'text-block';
 				divText.innerHTML = '<h4>' + e[1]['key'] + '</h4>';
+
 				divText.innerHTML += '<p>' + e[1]['games'].slice(0,30) + ' - ' +
 					e[1]['viewers'] +' ' + browser.i18n.getMessage("m4") + '</p>';
 				divText.innerHTML += '<p>' + e[1]['title'].slice(0,42) + '</p>';
@@ -123,14 +124,18 @@ function notify(id, msg) {
 
 function updateStreams(response) {
 
+	let delay = 1000;
 	if(!localStorage.getItem('channels')){
 		channels = Object.entries(response);
 		localStorage.setItem('channels', JSON.stringify(channels));
+
 		channels.forEach((e) => {
-			if(e[1]['status'] === 'Live')
-				notify(e[1]['key'], e[1]['title']);
+			if(e[1]['status'] === 'Live') {
+				setTimeout(() => {
+					notify(e[1]['key'], e[1]['title']);
+				}, delay+=2000);
+			}            
 		});
-		return;
 	} else
 		channels = JSON.parse(localStorage.getItem('channels'));
 	
@@ -139,12 +144,18 @@ function updateStreams(response) {
 	listOfStreams.forEach((e, i) => {
 		for(let j = 0; j < channels.length; j++){
 			if(e[1]['key'] === channels[j][1]['key']){
-				if(e[1]['status'] === 'Live' && channels[j][1]['status'] === 'Dead')
-					notify(e[1]['key'], e[1]['title']);
+				if(e[1]['status'] === 'Live' && channels[j][1]['status'] === 'Dead') {
+					setTimeout(() => {
+						notify(e[1]['key'], e[1]['title']);
+					}, delay+=2000);
+				}
+			
 				break;
 			} else if(e[1]['key'] !== channels[j][1]['key'] && j === channels.length - 1 &&
 			          e[1]['status'] === 'Live'){
-				notify(e[1]['key'], e[1]['title']);
+				setTimeout(() => {
+					notify(e[1]['key'], e[1]['title']);
+				}, delay+=2000);
 			}
 		}
 	});
