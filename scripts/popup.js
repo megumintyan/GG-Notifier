@@ -10,13 +10,19 @@ document.addEventListener("keyup", (e) => {
 	if(e.target.id === "input-box") {
 		if(e.keyCode === 13) {
 			let id = e.target.value;
-			e.target.value = '';
 			let ids = localStorage.getItem('ids');
+
+			if(id.search(/[,&#]/) !== -1) {
+				showErrorMessage(browser.i18n.getMessage("m17"));
+				return;
+			}
+			
 			let re = new RegExp(id, 'i');
 			if(ids.match(re)) {
 				showErrorMessage(browser.i18n.getMessage("m7")); // channel is already exists
 				return;
 			}
+			
 			const xhr = new XMLHttpRequest();
 			xhr.responseType = 'json';
 			xhr.onreadystatechange = () => {
@@ -28,6 +34,7 @@ document.addEventListener("keyup", (e) => {
 						getJSON(ids + id, updateStreams);
 						let err = document.getElementById('error');
 						err.innerHTML = '';
+						e.target.value = '';
 					}
 					else
 						showErrorMessage(browser.i18n.getMessage("m6")); // no such channel

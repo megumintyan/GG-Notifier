@@ -5,7 +5,7 @@
     "m4" : { "message" : "viewers"},
     "m5" : { "message" : "Add at least one channel"},
     "m6" : { "message" : "no such channel"},
-    "m7" : { "message" : "channel is already exists"},
+    "m7" : { "message" : "channel has already been added"},
     "m8" : { "message" : "Track your favorite streams on GoodGame.ru"},
     "m9" : { "message" : "Notification volume"},
     "m10" : { "message" : "Nobody is streaming right now"},
@@ -14,5 +14,6 @@
     "m13" : { "message" : "Open"},
     "m14" : { "message" : "Copy link"},
     "m15" : { "message" : "Delete"},
-    "m16" : { "message" : "Show notifications"}
+    "m16" : { "message" : "Show notifications"},
+    "m17" : { "message" : "unexpected character"}
 }
