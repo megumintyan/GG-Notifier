@@ -43,7 +43,8 @@ function updateFollowingTab() {
 					img.src = 'https:' + e[1]['thumb'];
 				else
 					img.src = e[1]['thumb'];
-				img.onerror = () => { img.src = e[1]['img']; };
+				img.onerror = () => { img.src = e[1]['img'];
+				                      img.onerror = () => { img.src = '/img/stream-offline.jpg'; }; };
 
 				divText.className = 'text-block';
 				divText.innerHTML = '<h4>' + e[1]['key'] + '</h4>';
@@ -87,6 +88,7 @@ function updateFollowingTab() {
 				
 				if(e[1]['status'] === 'Dead') {
 					img.src = e[1]['img'];
+					img.onerror = () => { img.src = '/img/stream-offline.jpg'; };
 
 					divText.className = 'text-block';
 					divText.innerHTML = '<h4>' + e[1]['key'] + '</h4>';
