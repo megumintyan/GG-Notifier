@@ -1,5 +1,5 @@
 let containerID = '';
-
+localStorage.setItem('buttonStatus', true);
 function showErrorMessage(msg) {
 	let err = document.getElementById('error');
 	err.innerHTML = msg;
@@ -95,7 +95,7 @@ document.addEventListener("contextmenu", (e) => {
 	e.preventDefault();
 });
 
-window.addEventListener("load", (e) => {
+window.addEventListener("DOMContentLoaded", (e) => {
 	let slider = document.getElementById("refresh");
 	let minutes = document.getElementById("minutes");
 	let sliderVolume = document.getElementById("audio-volume");

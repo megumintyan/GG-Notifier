@@ -5,7 +5,7 @@ if(!localStorage.length) {
 	localStorage.setItem('volume', '50');
 	localStorage.setItem('showNotifications', 'true');
 }
-
+localStorage.setItem('buttonStatus', true);
 let channels = [];
 
 
@@ -64,6 +64,33 @@ function updateFollowingTab() {
 
 		if(!count)
 			tab.innerHTML = '<center><h2>'+ browser.i18n.getMessage("m10") + '</h2></center>';
+
+		if(localStorage.getItem('buttonStatus') === 'false') {
+			channels.forEach((e) => {
+				let div = document.createElement('div');
+				let divText = document.createElement('div');
+				let img = document.createElement('img');
+				let hr = document.createElement('hr');
+				
+				if(e[1]['status'] === 'Dead') {
+					img.src = e[1]['img'];
+					img.onerror = () => { img.src = '/img/stream-offline.jpg'; };
+
+					divText.className = 'text-block';
+					divText.innerHTML = '<h4>' + e[1]['key'] + '</h4>';
+					divText.innerHTML += '<p>' + (e[1]['games'] ? e[1]['games'].slice(0,30) : '') + '</p>';
+					divText.innerHTML += '<p>' + (e[1]['title'] ? e[1]['title'].slice(0,42) : '') + '</p>';
+					div.className = 'container';
+					div.id = e[1]['key'];
+					div.appendChild(img);
+					div.appendChild(divText);
+					
+					tab.appendChild(div);
+					tab.appendChild(hr);					
+				}
+			});
+			return;
+		}
 		
 		let offlineButton = document.createElement('button');
 		let divButton = document.createElement('div');
@@ -79,6 +106,7 @@ function updateFollowingTab() {
 		offlineButton.addEventListener("click", () => {
 			tab.removeChild(divButton);
 			tab.removeChild(br);
+			localStorage.setItem('buttonStatus', false);
 			channels.forEach((e) => {
 				
 				let div = document.createElement('div');
