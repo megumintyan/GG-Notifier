@@ -50,6 +50,10 @@ button::-moz-focus-inner {
     height: 16px;
 }
 
+.slider {
+    background-color: inherit;
+}
+
 .tab {
     padding-top: 5px;
     padding-right: 5px;
