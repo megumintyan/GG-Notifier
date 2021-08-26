@@ -23,19 +23,23 @@ function updateFollowingTab() {
 		while (tab.firstChild) {
 			tab.removeChild(tab.firstChild);
 		}
-		
+
 		if(!localStorage.getItem('ids')) {
-			tab.innerHTML = '<center><h2>'+ browser.i18n.getMessage("m5") + '</h2></center>';
+			let center = document.createElement('center');
+			let h2 = document.createElement('h2');
+			h2.textContent = browser.i18n.getMessage("m5");
+			center.appendChild(h2);
+			tab.appendChild(center);
 			return;
 		}
-		
+
 		channels.forEach((e) => {
-			
+
 			let div = document.createElement('div');
 			let divText = document.createElement('div');
 			let img = document.createElement('img');
 			let hr = document.createElement('hr');
-		
+
 			if(e[1]['status'] === 'Live') {
 				count++;
 
@@ -47,23 +51,32 @@ function updateFollowingTab() {
 				                      img.onerror = () => { img.src = '/img/stream-offline.jpg'; }; };
 
 				divText.className = 'text-block';
-				divText.innerHTML = '<h4>' + e[1]['key'] + '</h4>';
-
-				divText.innerHTML += '<p>' + (e[1]['games'] ? e[1]['games'].slice(0,30) : '') + ' - ' +
-					e[1]['viewers'] +' ' + browser.i18n.getMessage("m4") + '</p>';
-				divText.innerHTML += '<p>' + (e[1]['title'] ? e[1]['title'].slice(0,42) : '') + '</p>';
+				let h4 = document.createElement('h4');
+				let pGames = document.createElement('p');
+				let pTitle = document.createElement('p');
+				h4.textContent = e[1]['key'];
+				pGames.textContent = (e[1]['games'] ? e[1]['games'].slice(0,30) : '') + ' - ' + e[1]['viewers'] +' ' + browser.i18n.getMessage("m4");
+				pTitle.textContent = (e[1]['title'] ? e[1]['title'].slice(0,42) : '');
+				divText.appendChild(h4);
+				divText.appendChild(pGames);
+				divText.appendChild(pTitle);
 				div.className = 'container';
 				div.id = e[1]['key'];
 				div.appendChild(img);
 				div.appendChild(divText);
-				
+
 				tab.appendChild(div);
 				tab.appendChild(hr);
 			}
 		});
 
-		if(!count)
-			tab.innerHTML = '<center><h2>'+ browser.i18n.getMessage("m10") + '</h2></center>';
+		if(!count) {
+			let center = document.createElement('center');
+			let h2 = document.createElement('h2');
+			h2.textContent = browser.i18n.getMessage("m10");
+			center.appendChild(h2);
+			tab.appendChild(center);
+		}
 
 		if(localStorage.getItem('buttonStatus') === 'false') {
 			channels.forEach((e) => {
@@ -71,27 +84,33 @@ function updateFollowingTab() {
 				let divText = document.createElement('div');
 				let img = document.createElement('img');
 				let hr = document.createElement('hr');
-				
+
 				if(e[1]['status'] === 'Dead') {
 					img.src = e[1]['img'];
 					img.onerror = () => { img.src = '/img/stream-offline.jpg'; };
 
 					divText.className = 'text-block';
-					divText.innerHTML = '<h4>' + e[1]['key'] + '</h4>';
-					divText.innerHTML += '<p>' + (e[1]['games'] ? e[1]['games'].slice(0,30) : '') + '</p>';
-					divText.innerHTML += '<p>' + (e[1]['title'] ? e[1]['title'].slice(0,42) : '') + '</p>';
+					let h4 = document.createElement('h4');
+					let pGames = document.createElement('p');
+					let pTitle = document.createElement('p');
+					h4.textContent = e[1]['key'];
+					pGames.textContent = (e[1]['games'] ? e[1]['games'].slice(0,30) : '');
+					pTitle.textContent = (e[1]['title'] ? e[1]['title'].slice(0,42) : '');
+					divText.appendChild(h4);
+					divText.appendChild(pGames);
+					divText.appendChild(pTitle);
 					div.className = 'container';
 					div.id = e[1]['key'];
 					div.appendChild(img);
 					div.appendChild(divText);
-					
+
 					tab.appendChild(div);
-					tab.appendChild(hr);					
+					tab.appendChild(hr);
 				}
 			});
 			return;
 		}
-		
+
 		let offlineButton = document.createElement('button');
 		let divButton = document.createElement('div');
 		let br = document.createElement('br');
@@ -108,25 +127,31 @@ function updateFollowingTab() {
 			tab.removeChild(br);
 			localStorage.setItem('buttonStatus', false);
 			channels.forEach((e) => {
-				
+
 				let div = document.createElement('div');
 				let divText = document.createElement('div');
 				let img = document.createElement('img');
 				let hr = document.createElement('hr');
-				
+
 				if(e[1]['status'] === 'Dead') {
 					img.src = e[1]['img'];
 					img.onerror = () => { img.src = '/img/stream-offline.jpg'; };
 
 					divText.className = 'text-block';
-					divText.innerHTML = '<h4>' + e[1]['key'] + '</h4>';
-					divText.innerHTML += '<p>' + (e[1]['games'] ? e[1]['games'].slice(0,30) : '') + '</p>';
-					divText.innerHTML += '<p>' + (e[1]['title'] ? e[1]['title'].slice(0,42) : '') + '</p>';
+					let h4 = document.createElement('h4');
+					let pGames = document.createElement('p');
+					let pTitle = document.createElement('p');
+					h4.textContent = e[1]['key'];
+					pGames.textContent = (e[1]['games'] ? e[1]['games'].slice(0,30) : '');
+					pTitle.textContent = (e[1]['title'] ? e[1]['title'].slice(0,42) : '');
+					divText.appendChild(h4);
+					divText.appendChild(pGames);
+					divText.appendChild(pTitle);
 					div.className = 'container';
 					div.id = e[1]['key'];
 					div.appendChild(img);
 					div.appendChild(divText);
-					
+
 					tab.appendChild(div);
 					tab.appendChild(hr);
 				}
@@ -135,12 +160,12 @@ function updateFollowingTab() {
 
 	}
 }
-	
+
 function notify(id, msg) {
 	if(localStorage.getItem('showNotifications') == 'true') {
 		browser.notifications.create("stream-notify", {
 			"type": "basic",
-			"iconUrl": browser.extension.getURL("icons/gg-128.png"),
+			"iconUrl": browser.runtime.getURL("icons/gg-128.png"),
 			"title": id,
 			"message": msg
 		});
@@ -162,13 +187,13 @@ function updateStreams(response) {
 				setTimeout(() => {
 					notify(e[1]['key'], e[1]['title']);
 				}, delay+=2000);
-			}            
+			}
 		});
 	} else
 		channels = JSON.parse(localStorage.getItem('channels'));
-	
+
 	let listOfStreams = Object.entries(response);
-	
+
 	listOfStreams.forEach((e, i) => {
 		for(let j = 0; j < channels.length; j++){
 			if(e[1]['key'] === channels[j][1]['key']){
@@ -177,7 +202,7 @@ function updateStreams(response) {
 						notify(e[1]['key'], e[1]['title']);
 					}, delay+=2000);
 				}
-			
+
 				break;
 			} else if(e[1]['key'] !== channels[j][1]['key'] && j === channels.length - 1 &&
 			          e[1]['status'] === 'Live'){
@@ -201,7 +226,7 @@ function updateStreams(response) {
 		browser.browserAction.setBadgeText({text: ''});
 
 	localStorage.setItem('channels', JSON.stringify(listOfStreams));
-	
+
 	updateFollowingTab();
 
 }
@@ -232,5 +257,3 @@ let checkStatus = () => {
 	setTimeout(checkStatus, counter);
 }
 setTimeout(checkStatus, counter);
-
-

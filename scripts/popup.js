@@ -2,7 +2,7 @@ let containerID = '';
 localStorage.setItem('buttonStatus', true);
 function showErrorMessage(msg) {
 	let err = document.getElementById('error');
-	err.innerHTML = msg;
+	err.textContent = msg;
 }
 
 document.addEventListener("keyup", (e) => {
@@ -16,13 +16,13 @@ document.addEventListener("keyup", (e) => {
 				showErrorMessage(browser.i18n.getMessage("m17"));
 				return;
 			}
-			
+
 			let re = new RegExp(id, 'i');
 			if(ids.match(re)) {
 				showErrorMessage(browser.i18n.getMessage("m7")); // channel is already exists
 				return;
 			}
-			
+
 			const xhr = new XMLHttpRequest();
 			xhr.responseType = 'json';
 			xhr.onreadystatechange = () => {
@@ -33,7 +33,7 @@ document.addEventListener("keyup", (e) => {
 						localStorage.setItem('ids', ids + id);
 						getJSON(ids + id, updateStreams);
 						let err = document.getElementById('error');
-						err.innerHTML = '';
+						err.textContent = '';
 						e.target.value = '';
 					}
 					else
@@ -55,7 +55,7 @@ document.addEventListener("click", (e) => {
 		let x = document.getElementsByClassName("tab");
 		for(let i = 0; i < x.length; i++)
 			x[i].style.display = "none";
-		
+
 		let btn = document.getElementsByClassName("button-bar");
 		for(let i = 0; i < btn.length; i++)
 			btn[i].style.backgroundColor = "#233056";
@@ -82,7 +82,7 @@ document.addEventListener("click", (e) => {
 			getJSON(ids, updateStreams);
 		}
 	}
-	
+
 
 	let ctxMenu = document.getElementById("ctxMenu");
 	ctxMenu.style.display = "";
@@ -106,26 +106,26 @@ window.addEventListener("DOMContentLoaded", (e) => {
 	checkbox.onchange = () => {
 		localStorage.setItem('showNotifications', checkbox.checked.toString());
 	}
-	
+
 	if(localStorage.getItem('time')) {
-		minutes.innerHTML = localStorage.getItem('time') + ' ' + browser.i18n.getMessage("m3");
+		minutes.textContent = localStorage.getItem('time') + ' ' + browser.i18n.getMessage("m3");
 		slider.value = localStorage.getItem('time');
 	}
 	else
-		minutes.innerHTML = slider.value + ' ' + browser.i18n.getMessage("m3");
+		minutes.textContent = slider.value + ' ' + browser.i18n.getMessage("m3");
 
 	slider.oninput = function() {
-		minutes.innerHTML = this.value + ' ' + browser.i18n.getMessage("m3");
+		minutes.textContent = this.value + ' ' + browser.i18n.getMessage("m3");
 		localStorage.setItem('time', this.value);
 	}
 
-	percent.innerHTML = localStorage.getItem('volume') + ' %';
+	percent.textContent = localStorage.getItem('volume') + ' %';
 	sliderVolume.value = localStorage.getItem('volume');
 	sliderVolume.oninput = function() {
-		percent.innerHTML = this.value + ' %';
+		percent.textContent = this.value + ' %';
 		localStorage.setItem('volume', this.value);
 	}
-	
+
 	browser.runtime.getBackgroundPage(e => {
 		e.updateFollowingTab();
 	});
